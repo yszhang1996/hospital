@@ -1,0 +1,67 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "首页"
+			}
+		}, {
+			"path": "pages/recharge/recharge",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "就诊卡充值"
+			}
+
+		}
+	    ,{
+            "path" : "pages/rechargeRecord/rechargeRecord",
+            "style": {
+            	"navigationStyle": "custom",
+            	"navigationBarTitleText": "充值记录"
+            }
+            
+        }
+        ,{
+            "path" : "pages/prepayment/prepayment",
+           "style": {
+           	"navigationStyle": "custom",
+           	"navigationBarTitleText": "预交金缴纳"
+           }
+            
+        }
+        ,{
+            "path" : "pages/consumptionList/consumptionList",
+            "style": {
+            	"navigationStyle": "custom",
+            	"navigationBarTitleText": "消费记录"
+            }
+            
+        }
+        ,{
+            "path" : "pages/myCard/myCard",
+            "style": {
+            	"navigationStyle": "custom",
+            	"navigationBarTitleText": "我的健康卡"
+            }
+            
+        }
+        ,{
+            "path" : "pages/myCard/addCard/addCard",
+            "style": {
+            	"navigationStyle": "custom",
+            	"navigationBarTitleText": "添加健康卡"
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
