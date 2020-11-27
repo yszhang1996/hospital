@@ -1,4 +1,4 @@
-var jweixin = require('./jweixin.js')  
+var jweixin = require('jweixin-module')  
 async function configWeiXin(callback) {
     let [errConfig, resConfig] = await api.wxConfig(window.location.href);
     if (resConfig) {
@@ -13,9 +13,9 @@ async function configWeiXin(callback) {
         let info = {
             debug: true, // 调试，发布的时候改为false
             appId: 'wx5ec94806588674ae',
-            nonceStr: resConfig.noncestr,
-            timestamp: resConfig.timestamp,
-            signature: resConfig.sign,
+            // nonceStr: resConfig.noncestr,
+            // timestamp: resConfig.timestamp,
+            // signature: resConfig.sign,
             jsApiList: apiList
         };
         jweixin.config(info);

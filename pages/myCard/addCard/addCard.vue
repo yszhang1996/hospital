@@ -1,11 +1,11 @@
 <template>
 	<view>
 		<view class="form">
-			<u-form :model="form" ref="uForm">
-				<u-form-item label="" :left-icon="'account'"><u-input v-model="form.name" placeholder="请输入就诊人姓名" /></u-form-item>
-				<u-form-item label="" :left-icon="'coupon'"><u-input v-model="form.name" placeholder="请输入【门诊ID号】或【住院号】" /></u-form-item>
-				<u-form-item label="" :left-icon="'order'"><u-input v-model="form.name" placeholder="请输入身份证号(非必填)" /></u-form-item>
-				<u-form-item label="" :left-icon="'phone-fill'"><u-input v-model="form.name" placeholder="请输入您的手机号" /></u-form-item>
+			<u-form ref="uForm">
+				<u-form-item label="" :left-icon="'account'"><u-input v-model="name" placeholder="请输入就诊人姓名" /></u-form-item>
+				<u-form-item label="" :left-icon="'coupon'"><u-input v-model="med_id" placeholder="请输入【门诊ID号】或【住院号】(非必填)" /></u-form-item>
+				<u-form-item label="" :left-icon="'order'"><u-input v-model="idno" placeholder="请输入身份证号" /></u-form-item>
+				<u-form-item label="" :left-icon="'phone-fill'"><u-input v-model="phone" placeholder="请输入您的手机号" /></u-form-item>
 			</u-form>
 		</view>
 		<view class="extra-info">
@@ -27,7 +27,7 @@
 			<u-checkbox v-model="read" />
 			<text>阅读并同意《用户协议》</text>
 		</view>
-		<button class="bind" type="primary" @click="common.toURL('/pages/myCard/addCard/addCard')">立即绑卡</button>
+		<button class="bind" type="primary" @click="submit">立即绑卡</button>
 	</view>
 </template>
 
@@ -35,11 +35,40 @@
 export default {
 	data() {
 		return {
-			form: {
 				name: '',
-				read: null
-			}
+				idno: '',
+				med_id: '',
+				phone: '',
+				read: false
 		};
+	},
+	methods:{
+		submit(){
+			if(this.name && this.idno && this.phone && this.read){
+				this.$u.post(``, {
+					idno: this.idno,
+					med_id: this.med_id,
+					phone: this.phone,
+					name: this.name
+				}, {
+					code: `card.bind`,
+				}).then(res => {
+					console.log(res);
+					uni.showToast({
+						icon:'none',
+						title:'绑定成功！'
+					})
+					setTimeout(()=>{
+						this.common.toURL(`/pages/myCard/myCard`)
+					},1000)
+				});
+			}else{
+				uni.showToast({
+					icon:'none',
+					title:'请先完整的填写您的信息并同意《用户协议》'
+				})
+			}
+		}
 	}
 };
 </script>

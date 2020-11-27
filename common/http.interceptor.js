@@ -6,13 +6,13 @@
 const install = (Vue, vm) => {
 	// 此为自定义配置参数，具体参数见上方说明
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'http://192.168.0.116:9002/',
+		baseUrl: 'http://dnwzza.natappfree.cc/api',
 		loadingText: '努力加载中~',
 		loadingTime: 800,
 		// 设置自定义头部content-type
-		// header: {
-		// 	'content-type': 'xxx'
-		// }
+		header: {
+			'content-type': 'application/json;charset=UTF-8'
+		}
 		// ......
 	});
 
@@ -41,6 +41,22 @@ const install = (Vue, vm) => {
 		return config;
 		// 如果return一个false值，则会取消本次请求
 		// if(config.url == '/user/rest') return false; // 取消某次请求
+	}
+	
+	// 响应拦截，如配置，每次请求结束都会执行本方法
+	Vue.prototype.$u.http.interceptor.response = (res) => {
+		if (res.code == 1) {
+			console.log("success");
+			return res;
+		} else if (res.code == -1) {
+			// 假设-1为token失效，这里跳转登录
+			vm.$u.toast('验证失败，请重新登录');
+			common.toURL('/pages/login/login')
+			return false;
+		} else if (res.code === 0) {
+			vm.$u.toast(res.message);
+			return false;
+		}
 	}
 
 }
