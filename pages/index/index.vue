@@ -41,7 +41,7 @@
 					</view>
 					<view class="grid-text"><text>住院预交金</text></view>
 				</view>
-				<view class="grid-list">
+				<view class="grid-list" @click="common.toURL('/pages/dayConsumptionList/dayConsumptionList')">
 					<view class="grid-icon" style="background-color: #2899F5;">
 						<image src="../../static/img/index/searchlist.png" mode="widthFix" style="width:49rpx;height: 49rpx;"></image>
 					</view>
@@ -49,7 +49,6 @@
 				</view>
 			</view>
 		</view>
-		<button type="default" @click="login">1234</button>
 	</view>
 </template>
 
@@ -58,50 +57,38 @@
 		data() {
 			return {
 				title: 'Hello',
-				text: '1111111111'
 			};
 		},
 		onLoad(param) {
-			// var jweixin = require('@/common/jweixin.js')
-
-			// jweixin.ready(function(){
-
-			// });
-			// // console.log(jweixin);
-			// jweixin.checkJsApi({
-			//   jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
-			//   success: function(res) {
-			//   // 以键值对的形式返回，可用的api值true，不可用为false
-			//   // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
-			//     alert(JSON.stringify(res))
-			//   }
-			// });
-			console.log(JSON.stringify(param));
 			if (param.code) {
-				let appid = 'wx5ec94806588674ae';
-				let secret = '2008a05d0e71fecb7461957dfbcf9324';
-				let authURL = 'https://api.weixin.qq.com/sns/oauth2/access_token';
-				this.text = authURL;
+				let appid = 'wx55cacb92f2202f90';
+				// let authURL = 'https://api.weixin.qq.com/sns/oauth2/access_token';
 				uni.setStorageSync('token', param.code);
 				this.$u.post(``, {}, {
 					code: `sys.login`,
 				}).then(res => {
 					uni.showToast({
-						icon:'none',
-						title:'授权成功'
+						icon: 'none',
+						title: '授权成功'
 					})
+					this.$u.post(``, {}, {
+						code: `card.list`,
+					}).then(res => {
+						uni.setStorage({
+						    key: 'myCard',
+						    data: res.data
+						});
+					});
 				});
-				// uni.request({
-				//     url: `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx5ec94806588674ae&secret=2008a05d0e71fecb7461957dfbcf9324&code=031wiCFa1fOfUz0K02Ja1zH0DH1wiCFJ&grant_type=authorization_code`, //仅为示例，并非真实接口地址。
-				// 	method: 'GET',
-				//     header: {
-				//         'content-type': 'application/json;charset=UTF-8'
-				//     },
-				//     success: (res) => {
-				//         console.log(res.data);
-				//         this.text = 'request success';
-				//     }
-				// });
+			}else{
+				this.$u.post(``, {}, {
+					code: `card.list`,
+				}).then(res => {
+					uni.setStorage({
+						key: 'myCard',
+						data: res.data
+					});
+				});	
 			}
 		},
 		onShow() {},
@@ -175,7 +162,7 @@
 				} else {
 					// alert('22221');
 
-					let appid = 'wx5ec94806588674ae';
+					let appid = 'wx55cacb92f2202f90';
 					//1.使用encodeURIComponent以及JSON.stringify()方法对对象进行字符串化和编码，这样可以控制url参数的长度，参考示例代码（uni-app书写方式，微信小程序自己改。）
 
 					let uri = encodeURIComponent(link);
@@ -186,6 +173,19 @@
 						`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${uri}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`;
 					window.location.href = authURL;
 				}
+			},
+			pay() {
+				this.jweixin.chooseWXPay({
+					timestamp: 1607179038, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+					nonceStr: '1607179038111', // 支付签名随机串，不长于 32 位
+					package: 'prepay_id=wx052237180517955df89d1813508fc80000', // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+					signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+					paySign: '1854172F2F6436566E70D7DAB6F8F4EC', // 支付签名
+					success: function(res) {
+						// 支付成功后的回调函数
+						console.log(res);
+					}
+				});
 			}
 		}
 	};

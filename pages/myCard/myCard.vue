@@ -4,7 +4,7 @@
 			<view class="card-list" :class="`list${index}`" v-for="(item,index) in cardData" :key="index">
 				<view class="up">
 					<view class="left" style="color: #2d8bfc;"><span class="icon iconfont jiankang">&#xe603;</span></view>
-					<view class="center"><text class="card-text">XX医院健康卡</text><text class="card-id">卡号：{{item.cardno}}</text></view>
+					<view class="center"><text class="card-text">健康卡</text><text class="card-id">卡号：{{item.cardno}}</text></view>
 					<view class="right"><text>持有人：{{item.name}}</text></view>
 				</view>
 				<view class="down">
@@ -52,8 +52,8 @@
 				</view>
 			</view> -->
 		</view>
-		<button class="add" type="primary" @click="common.toURL('/pages/myCard/addCard/addCard')">添加健康卡</button>
-		<view class="extra"><text>您还可以办理2张卡</text></view>
+		<button class="add" type="primary" @click="common.toURL('/pages/myCard/addCard/addCard')" v-if="cardData.length < 6">添加健康卡</button>
+		<view class="extra"><text>最多可以绑定5张健康卡</text></view>
 	</view>
 </template>
 

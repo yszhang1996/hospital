@@ -110,7 +110,7 @@
 					cardno: this.currentUser.cardno,
 					date: this.time,
 				}, {
-					code: `card.mzlist`,
+					code: `card.zylist`,
 				}).then(res => {
 					uni.showToast({
 						icon: 'none',

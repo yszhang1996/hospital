@@ -57,6 +57,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/dayConsumptionList/dayConsumptionList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "一日清单查询",
+            	"navigationStyle": "custom"
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

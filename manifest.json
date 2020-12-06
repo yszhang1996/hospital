@@ -87,11 +87,12 @@
     },
     "h5" : {
         "router" : {
-            "base" : "/hospital/",
+            "base" : "/",
             "mode" : "history"
         },
-        "devServer":{
-        	"disableHostCheck" : true
+        "devServer" : {
+            "disableHostCheck" : true,
+            "https" : false
         }
     }
 }
