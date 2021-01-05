@@ -7,7 +7,7 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "商丘市第六人民医院"
 			}
 		}, {
 			"path": "pages/recharge/recharge",
@@ -16,52 +16,68 @@
 				"navigationBarTitleText": "就诊卡充值"
 			}
 
+		}, {
+			"path": "pages/rechargeRecord/rechargeRecord",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "充值记录"
+			}
+
+		}, {
+			"path": "pages/prepayment/prepayment",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "预交金缴纳"
+			}
+
+		}, {
+			"path": "pages/consumptionList/consumptionList",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "消费记录"
+			}
+
+		}, {
+			"path": "pages/myCard/myCard",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "我的健康卡"
+			}
+
+		}, {
+			"path": "pages/myCard/addCard/addCard",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "添加健康卡"
+			}
+
+		}, {
+			"path": "pages/dayConsumptionList/dayConsumptionList",
+			"style": {
+				"navigationBarTitleText": "一日清单查询",
+				"navigationStyle": "custom"
+			}
+
+		}, {
+			"path": "pages/paySuccess/paySuccess",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"navigationStyle": "custom"
+			}
+
 		}
 	    ,{
-            "path" : "pages/rechargeRecord/rechargeRecord",
+            "path" : "pages/prepaymentcontent/prepaymentcontent",
             "style": {
-            	"navigationStyle": "custom",
-            	"navigationBarTitleText": "充值记录"
+            	"navigationBarTitleText": "预交金缴纳",
+            	"navigationStyle": "custom"
             }
             
         }
         ,{
-            "path" : "pages/prepayment/prepayment",
-           "style": {
-           	"navigationStyle": "custom",
-           	"navigationBarTitleText": "预交金缴纳"
-           }
-            
-        }
-        ,{
-            "path" : "pages/consumptionList/consumptionList",
+            "path" : "pages/xieyi/xieyi",
             "style": {
-            	"navigationStyle": "custom",
-            	"navigationBarTitleText": "消费记录"
-            }
-            
-        }
-        ,{
-            "path" : "pages/myCard/myCard",
-            "style": {
-            	"navigationStyle": "custom",
-            	"navigationBarTitleText": "我的健康卡"
-            }
-            
-        }
-        ,{
-            "path" : "pages/myCard/addCard/addCard",
-            "style": {
-            	"navigationStyle": "custom",
-            	"navigationBarTitleText": "添加健康卡"
-            }
-            
-        }
-        ,{
-            "path" : "pages/dayConsumptionList/dayConsumptionList",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "一日清单查询",
+            	"navigationBarTitleText": "用户协议",
             	"navigationStyle": "custom"
             }
             

@@ -40,6 +40,7 @@
 
 <script>
 	export default {
+		name:"门诊-充值缴费",
 		data() {
 			return {
 				show: false,
@@ -67,7 +68,7 @@
 		onLoad() {
 			this.myCard = uni.getStorageSync('myCard');
 			console.log(this.myCard);
-			if (this.myCard) {
+			if (this.myCard.length > 0) {
 				this.list = []
 				this.myCard.forEach((item, index) => {
 					this.list.push({
@@ -78,7 +79,10 @@
 				this.currentUser = this.myCard[0];
 			} else {
 				alert('暂未绑定健康卡，请先绑定');
-				this.common.toURL(`/pages/myCard/addCard/addCard`)
+				// this.common.toURL(`/pages/myCard/addCard/addCard`)
+				uni.redirectTo({
+					url: `/pages/myCard/addCard/addCard`
+				})
 			}
 		},
 		onReady() {
@@ -123,7 +127,9 @@
 				}
 				this.$u.post(``, {
 					ammount: this.money,
-					card_no: this.currentUser.cardno,
+					cardno: this.currentUser.cardno,
+					name: this.currentUser.name,
+					idno: this.currentUser.idno,
 					type: 0
 				}, {
 					code: `order.create`
@@ -140,7 +146,10 @@
 							// alert(JSON.stringify(res2));
 							// alert(JSON.stringify(res2.errMsg))
 							if (res2.errMsg == "chooseWXPay:ok") {
-								this.showModal = true
+								// this.showModal = true
+								uni.redirectTo({
+									url: `/pages/paySuccess/paySuccess`
+								})
 							}
 						}.bind(this)
 					});

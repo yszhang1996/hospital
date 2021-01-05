@@ -54,6 +54,7 @@
 
 <script>
 	export default {
+		// name:"首页",
 		data() {
 			return {
 				title: 'Hello',
@@ -67,10 +68,10 @@
 				this.$u.post(``, {}, {
 					code: `sys.login`,
 				}).then(res => {
-					uni.showToast({
-						icon: 'none',
-						title: '授权成功'
-					})
+					// uni.showToast({
+					// 	icon: 'none',
+					// 	title: '授权成功'
+					// })
 					this.$u.post(``, {}, {
 						code: `card.list`,
 					}).then(res => {

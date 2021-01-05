@@ -93,6 +93,7 @@
         "devServer" : {
             "disableHostCheck" : true,
             "https" : false
-        }
+        },
+        "title" : "商丘市第六人民医院"
     }
 }

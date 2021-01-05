@@ -50,7 +50,7 @@ const install = (Vue, vm) => {
 			return res;
 		} else if (res.code == -100) {
 			// 假设-1为token失效，这里跳转登录
-			vm.$u.toast('验证失败，请重新登录');
+			// vm.$u.toast('验证失败，请重新登录');
 
 			function getUrlParam(name) {
 				var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
